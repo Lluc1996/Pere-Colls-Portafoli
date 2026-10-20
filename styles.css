@@ -581,13 +581,6 @@ html[lang="ja"] .eyebrow,html[lang="zh-Hans"] .eyebrow{letter-spacing:.08em}
 .lang-list button:hover,.lang-list button:focus-visible{background:rgba(240,234,239,.12)}
 .lang-list button[aria-selected="true"]{background:#F0EAEF;color:#052367}
 
-/* Botó de tema fosc / clar */
-.theme-btn{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;transition:border-color .3s,transform .5s var(--ease)}
-.theme-btn:hover{border-color:var(--outline);transform:rotate(-20deg)}
-.theme-btn svg{grid-area:1/1;transition:opacity .3s,transform .5s var(--ease)}
-.theme-btn .i-sun{opacity:0;transform:scale(.6) rotate(-45deg)}
-:root[data-theme="dark"] .theme-btn .i-sun{opacity:1;transform:none}
-:root[data-theme="dark"] .theme-btn .i-moon{opacity:0;transform:scale(.6) rotate(45deg)}
 /* Menú visible també sobre el fons fosc */
 :root[data-theme="dark"] .menu-bar{background:rgba(13,70,154,.72);border-color:rgba(240,234,239,.2)}
 :root[data-theme="dark"] .menu-panel,:root[data-theme="dark"] .nav .lang-list{background:rgba(13,70,154,.94);border-color:rgba(240,234,239,.2)}
