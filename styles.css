@@ -584,3 +584,110 @@ html[lang="ja"] .eyebrow,html[lang="zh-Hans"] .eyebrow{letter-spacing:.08em}
 /* Menú visible també sobre el fons fosc */
 :root[data-theme="dark"] .menu-bar{background:rgba(13,70,154,.72);border-color:rgba(240,234,239,.2)}
 :root[data-theme="dark"] .menu-panel,:root[data-theme="dark"] .nav .lang-list{background:rgba(13,70,154,.94);border-color:rgba(240,234,239,.2)}
+
+/* ================= v8 · Delighter, capçalera simple, menú vertical, piscina, projectes seleccionats ================= */
+@font-face{font-family:"Delighter";src:url("fonts/delighter-serif-bold.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Delighter";src:url("fonts/delighter-serif-bold-oblique.otf") format("opentype");font-weight:400;font-style:italic;font-display:swap}
+:root{--display:"Delighter","Montserrat",ui-sans-serif,system-ui,sans-serif}
+
+/* Tipografia del manual als titulars */
+.hero h1,.manifest-text,.work h2,.cat h2,.case-head h3,.hscroll-head h3,.about h2,.services h2,.steps-title,.contact h2,
+.next-links b,.soon-head h2,.feat-head h2,.feat h3,.brand-txt b,.ticker span,.route b,.card-meta h3,.receipt h3,.col h3,.values b,.note h2{
+  font-family:var(--display);font-weight:400;letter-spacing:0}
+.hero h1{font-size:clamp(60px,10.5vw,168px);line-height:.9;margin-left:0}
+.hero h1 .l2{padding-left:.3em}
+.manifest-text{font-size:clamp(24px,3.6vw,48px);line-height:1.12;max-width:26ch}
+.work h2{font-size:clamp(56px,11vw,160px);line-height:.92}
+.cat h2{font-size:clamp(28px,4.6vw,64px);line-height:1}
+.case-head h3,.hscroll-head h3{font-size:clamp(32px,4.8vw,64px)!important;line-height:1!important;letter-spacing:0!important}
+.about h2,.services h2,.soon-head h2{font-size:clamp(34px,5vw,68px);line-height:1}
+.contact-top h2,html:not([lang="ca"]) .contact-top h2{font-size:clamp(36px,5.6vw,88px);line-height:.98}
+.next-links b{font-size:clamp(30px,4.6vw,60px);line-height:1}
+.card-meta h3{font-size:clamp(20px,2.2vw,28px)}
+.ticker span{letter-spacing:.04em}
+.values b{font-size:var(--t-sub)}
+.col h3{font-size:var(--t-sm);letter-spacing:.12em}
+.note h2{letter-spacing:.08em}
+.route b{letter-spacing:.01em}
+
+/* Desplaçament suau (Lenis) */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* Capçalera simple i fixa */
+.nav.topbar{position:fixed;top:0;left:0;right:0;z-index:60;padding-top:calc(18px + env(safe-area-inset-top,0px));border:0;background:transparent;transition:transform .5s var(--ease),background-color .4s var(--ease-out)}
+.nav.topbar.is-solid{background:linear-gradient(to bottom,rgba(5,35,103,.92) 0%,rgba(5,35,103,.6) 60%,rgba(5,35,103,0) 100%);-webkit-backdrop-filter:none;backdrop-filter:none;border:0}
+.nav.topbar .wrap{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding-block:0 18px}
+.brand-txt{display:grid;gap:2px;text-decoration:none;line-height:1}
+.brand-txt span{font-size:var(--t-cap);font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.brand-txt b{font-size:clamp(20px,2vw,26px);color:var(--heading)}
+.nav.topbar .nav-end{display:flex;align-items:flex-start;gap:10px}
+main#contingut-principal{padding-top:clamp(88px,9vw,112px)}
+
+/* Menú vertical amb la mateixa píndola i panell */
+.menu-bar{flex-direction:column;align-items:stretch;gap:2px;padding:6px;border-radius:24px;min-width:156px}
+.menu-bar a{padding:10px 18px;text-align:left}
+.menu-pill{top:0;left:0;bottom:auto;height:0;transition:transform .55s var(--ease),width .55s var(--ease),height .55s var(--ease),opacity .3s var(--ease-out)}
+.menu-panel{left:auto;right:calc(100% + 12px);top:0;transform-origin:top right}
+.menu-toggle{display:none}
+
+@media (max-width:860px){
+  .nav.topbar .wrap{flex-wrap:nowrap}
+  .menu{order:0;flex-basis:auto;position:absolute;top:calc(100% + 8px);right:0;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .3s var(--ease-out),transform .45s var(--ease),visibility 0s .3s}
+  .nav-end{position:relative}
+  .nav.menu-open .menu{opacity:1;visibility:visible;transform:none;transition:opacity .3s var(--ease-out),transform .45s var(--ease),visibility 0s}
+  .menu-bar{justify-content:flex-start;min-width:190px}
+  .menu-bar a{flex:none;text-align:left;font-size:var(--t-body);padding:12px 18px}
+  .menu-toggle{display:inline-flex;align-items:center;min-height:38px;padding:8px 16px;border-radius:var(--r-pill);border:1px solid rgba(240,234,239,.25);background:rgba(13,70,154,.72);color:#F0EAEF;font:600 var(--t-sm)/1 var(--font);cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+}
+
+/* ---------- Piscina desbordant ---------- */
+.collage--pool{min-height:0;align-self:center}
+.pool{position:relative;width:min(100%,600px);aspect-ratio:1;margin-left:auto;touch-action:pan-y;cursor:crosshair}
+.pool-bg{position:absolute;left:-14%;top:-14%;width:128%;max-width:none;height:auto;opacity:.12;pointer-events:none;border-radius:50%;z-index:0}
+.pool-gl{position:absolute;left:0;top:0;width:100%;height:240%;pointer-events:none;z-index:2}
+.swimmer{position:absolute;left:0;top:0;width:44%;height:auto;z-index:3;pointer-events:none;will-change:transform;transform:translate(79.5%,54.5%) rotate(-6deg);filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+.pool-hint{position:absolute;left:0;top:calc(100% + 10px);z-index:4;font-size:var(--t-cap);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:opacity .4s}
+.pool-static::before{content:"";position:absolute;inset:3.5%;border-radius:50%;z-index:1;background:repeating-linear-gradient(170deg,#0D469A 0 22px,#2a5aa6 22px 40px);box-shadow:0 0 0 14px #F0EAEF}
+.collage--pool .note{z-index:4;left:-4%;bottom:6%;width:min(250px,48%)}
+.collage--pool .stamp{z-index:4;top:2%;bottom:auto;right:-2%}
+.collage--pool .stamp-label{display:none}
+@media (max-width:900px){.pool{width:100%;margin-inline:auto}.collage--pool .note{left:0;bottom:-6%}}
+@media (max-width:480px){.collage--pool .note{width:58%}.collage--pool .stamp{width:84px;height:84px}}
+
+/* ---------- Projectes seleccionats ---------- */
+.featured{padding-block:clamp(80px,10vw,140px) 0;position:relative;z-index:3}
+.feat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 24px;flex-wrap:wrap;margin-bottom:clamp(32px,4vw,56px)}
+.feat-head .eyebrow{order:2}
+.feat-head h2{font-size:clamp(40px,7vw,112px);line-height:.92}
+.feat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,3vw,40px)}
+.feat{position:relative;display:grid;gap:20px;align-content:start;text-decoration:none;color:inherit}
+.feat-num{position:absolute;z-index:3;top:-.42em;right:14px;font-family:var(--display);font-size:clamp(64px,8vw,128px);line-height:1;color:transparent;-webkit-text-stroke:1.5px #F0EAEF;pointer-events:none;transition:color .5s var(--ease-out)}
+.feat:hover .feat-num{color:#F0EAEF}
+.feat-img{position:relative;aspect-ratio:4/3;border-radius:var(--r-img);overflow:hidden;background:var(--surface)}
+.feat-img > img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.feat:hover .feat-img > img{transform:scale(1.05)}
+.feat-posters{display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 30%,#0D469A 0%,#0A2F7A 55%,#052367 100%)}
+.feat-posters img{grid-area:1/1;width:34%!important;height:auto!important;object-fit:contain;border-radius:3px;box-shadow:var(--obj-dark);transition:transform 1s var(--ease)}
+.feat-posters img:nth-child(1){transform:translateX(-62%) rotate(-11deg)}
+.feat-posters img:nth-child(2){transform:translateY(-2%) rotate(1deg);z-index:2}
+.feat-posters img:nth-child(3){transform:translateX(62%) rotate(10deg)}
+.feat:hover .feat-posters img:nth-child(1){transform:translateX(-86%) rotate(-16deg)}
+.feat:hover .feat-posters img:nth-child(2){transform:translateY(-8%) scale(1.06) rotate(0deg)}
+.feat:hover .feat-posters img:nth-child(3){transform:translateX(86%) rotate(15deg)}
+.feat-meta{display:grid;gap:10px}
+.feat-tags{font-size:var(--t-cap);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.feat h3{font-size:clamp(28px,3.4vw,48px);line-height:1;color:var(--heading)}
+.feat p{color:var(--muted);max-width:46ch}
+.feat-go{justify-self:start;font-size:var(--t-sm);font-weight:600;color:var(--heading);border-bottom:1px solid currentColor;padding-bottom:2px;transition:letter-spacing .5s var(--ease)}
+.feat:hover .feat-go{letter-spacing:.04em}
+@media (max-width:760px){.feat-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* v8 ajustos: res surt pels costats i el segell no topa amb el menú */
+html{overflow-x:clip}
+.hero{overflow-x:clip}
+.collage--pool .stamp{top:auto;bottom:2%;right:-1%}
+html.lenis{scroll-behavior:auto!important}
+html,body{overflow-anchor:none}

@@ -5,6 +5,15 @@
   if (reduce) root.classList.add('no-motion');
   var clamp = function(v,a,b){ return Math.min(b, Math.max(a, v)); };
   var each = function(list, fn){ Array.prototype.forEach.call(list, fn); };
+  window.CC = window.CC || {};
+
+  /* Desplaçament suau (Lenis) */
+  var lenis = null;
+  if (window.Lenis && !reduce){
+    lenis = new window.Lenis({lerp: .085, smoothWheel: true, wheelMultiplier: .95});
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+    window.CC.lenis = lenis;
+  }
 
   /* Navegació: glaçada en fer scroll, s'amaga en baixar i torna en pujar */
   var nav = document.getElementById('nav'), lastY = window.scrollY;
@@ -104,14 +113,30 @@
   function jump(id, smooth){
     var t = targetOf(id);
     var y = t ? t.getBoundingClientRect().top + window.scrollY : 0;
-    window.scrollTo({top: Math.max(0, Math.round(y)), behavior: smooth && !reduce ? 'smooth' : 'instant'});
+    var top = Math.max(0, Math.round(y));
+    if (lenis) lenis.scrollTo(top, {immediate: !smooth, force: true, duration: 1.4});
+    else window.scrollTo({top: top, behavior: smooth && !reduce ? 'smooth' : 'instant'});
   }
   var initial = decodeURIComponent((location.hash || '').slice(1));
   if (mt) setManifest(mt.textContent);
   sizeH(); jump(initial, false); req();
   window.addEventListener('load', function(){
     sizeH();
-    if (initial){ jump(initial, false); setTimeout(function(){ sizeH(); jump(initial, false); }, 250); }
+    if (initial){
+      var userMoved = false;
+      ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function(ev){ window.addEventListener(ev, function(){ userMoved = true; }, {passive:true, once:true}); });
+      var settleJump = function(){
+        if (userMoved) return;
+        sizeH();
+        var t = targetOf(initial); if (!t) return;
+        var y = Math.max(0, Math.round(t.getBoundingClientRect().top + window.scrollY));
+        window.scrollTo(0, y);
+        if (lenis){ lenis.resize && lenis.resize(); lenis.scrollTo(y, {immediate: true, force: true}); }
+      };
+      settleJump();
+      [250, 700, 1400, 2400].forEach(function(ms){ setTimeout(settleJump, ms); });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(settleJump);
+    }
     req();
   });
   window.addEventListener('hashchange', function(){ jump(decodeURIComponent(location.hash.slice(1)), true); });
@@ -142,7 +167,8 @@
       if (!a){ pill.style.opacity = '0'; return; }
       pill.style.opacity = '1';
       pill.style.width = a.offsetWidth + 'px';
-      pill.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+      pill.style.height = a.offsetHeight + 'px';
+      pill.style.transform = 'translate(' + a.offsetLeft + 'px,' + a.offsetTop + 'px)';
     }
     function show(a){
       clearTimeout(closeT);
@@ -170,6 +196,16 @@
     window.addEventListener('resize', function(){ lightUp(current); });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ lightUp(current); });
     window.CC.relayoutMenu = function(){ lightUp(current); };
+
+    /* Mòbil: el botó Menú obre la llista vertical */
+    var toggle = document.getElementById('menu-toggle');
+    if (toggle && nav){
+      function setOpen(v){ nav.classList.toggle('menu-open', v); toggle.setAttribute('aria-expanded', v ? 'true' : 'false'); if (v) lightUp(current); }
+      toggle.addEventListener('click', function(e){ e.stopPropagation(); setOpen(!nav.classList.contains('menu-open')); });
+      document.addEventListener('click', function(e){ if (nav.classList.contains('menu-open') && !menu.contains(e.target)) setOpen(false); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
+      each(items, function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
+    }
   }
 
   /* Revelat suau: només elements que comencen per sota del plec */
