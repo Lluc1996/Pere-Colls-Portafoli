@@ -259,4 +259,18 @@
       } else { selectIt(); }
     });
   }
+
+  /* Tema fosc (per defecte) o clar */
+  var themeBtn = document.getElementById('theme-btn');
+  if (themeBtn){
+    function syncTheme(){ themeBtn.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
+    themeBtn.addEventListener('click', function(){
+      var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', t);
+      try { localStorage.setItem('cc-theme', t); } catch(e){}
+      syncTheme();
+    });
+    syncTheme();
+  }
 })();
+
