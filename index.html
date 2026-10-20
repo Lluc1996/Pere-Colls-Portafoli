@@ -80,63 +80,107 @@
       <div class="fl-sky" id="fl-sky">
         <svg class="fl-svg" id="fl-svg" viewBox="0 0 2400 800" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <defs>
-          <linearGradient id="fl-skin" x1="0" y1="228" x2="0" y2="522" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f6f7f9"/><stop offset="1" stop-color="#d6dbe3"/></linearGradient>
-          <linearGradient id="fl-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a4766"/><stop offset=".55" stop-color="#18213a"/><stop offset="1" stop-color="#0d1426"/></linearGradient>
-          <linearGradient id="fl-metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9ecf1"/><stop offset=".5" stop-color="#c3c9d2"/><stop offset="1" stop-color="#9aa2ae"/></linearGradient>
-          <linearGradient id="fl-wing" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6e9ee"/><stop offset="1" stop-color="#bcc3cd"/></linearGradient>
-          <linearGradient id="fl-shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset=".75" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".18"/></linearGradient>
-          <radialGradient id="fl-cloud"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".6" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-          <clipPath id="fl-clip"><path d="M 70 440 C 70 372 128 316 236 304 C 300 262 410 232 560 228 L 870 228 C 960 230 1012 278 1066 300 L 2070 300 C 2170 300 2250 306 2330 318 L 2342 352 C 2290 410 2190 474 2040 522 L 300 522 C 160 522 70 500 70 440 Z"/></clipPath>
+          <linearGradient id="fl-skin" x1="0" y1="228" x2="0" y2="524" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#e7ecf2"/><stop offset=".14" stop-color="#ffffff"/><stop offset=".5" stop-color="#fbfcfd"/>
+            <stop offset=".78" stop-color="#e9edf2"/><stop offset=".93" stop-color="#cfd6df"/><stop offset="1" stop-color="#b6bfcb"/>
+          </linearGradient>
+          <linearGradient id="fl-fin" x1="1940" y1="0" x2="2316" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#f3f5f8"/><stop offset="1" stop-color="#dfe4ea"/></linearGradient>
+          <linearGradient id="fl-glass" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#4a5a7e"/><stop offset=".45" stop-color="#1c2744"/><stop offset="1" stop-color="#0b1222"/></linearGradient>
+          <linearGradient id="fl-wingg" x1="0" y1="496" x2="0" y2="702" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f4f6f9"/><stop offset=".55" stop-color="#dde2e9"/><stop offset="1" stop-color="#bcc4cf"/></linearGradient>
+          <linearGradient id="fl-nac" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f8fa"/><stop offset=".35" stop-color="#e2e6ec"/><stop offset=".75" stop-color="#b9c1cc"/><stop offset="1" stop-color="#97a1af"/></linearGradient>
+          <radialGradient id="fl-intake" cx=".35" cy=".4" r=".8"><stop offset="0" stop-color="#3b4459"/><stop offset=".6" stop-color="#151b28"/><stop offset="1" stop-color="#0a0e17"/></radialGradient>
+          <linearGradient id="fl-belly" x1="0" y1="468" x2="0" y2="524" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cdd3dc" stop-opacity="0"/><stop offset=".35" stop-color="#c8ced8" stop-opacity=".55"/><stop offset="1" stop-color="#a9b2bf" stop-opacity=".8"/></linearGradient>
+          <linearGradient id="fl-shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+          <radialGradient id="fl-ao" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2a3550" stop-opacity=".22"/><stop offset="1" stop-color="#2a3550" stop-opacity="0"/></radialGradient>
+          <radialGradient id="fl-sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff8e8" stop-opacity=".9"/><stop offset=".35" stop-color="#fff3dc" stop-opacity=".35"/><stop offset="1" stop-color="#fff3dc" stop-opacity="0"/></radialGradient>
+          <clipPath id="fl-clip"><path d="M 52 452 C 52 410 78 370 128 340 C 168 316 214 300 262 292 C 330 262 430 236 560 230 L 860 230 C 930 232 985 262 1040 292 C 1060 300 1080 300 1110 300 L 2060 300 C 2160 300 2250 304 2338 314 L 2352 330 C 2318 372 2240 430 2120 488 C 2070 510 2030 520 1980 522 L 330 522 C 190 522 90 506 60 478 C 54 470 52 462 52 452 Z"/></clipPath>
           <clipPath id="fl-win"><rect x="1240" y="378" width="22" height="30" rx="10"/></clipPath>
-        </defs>
-        <g class="fl-clouds-back">
-          <ellipse cx="-260" cy="250" rx="420" ry="90" fill="url(#fl-cloud)"/>
-          <ellipse cx="1650" cy="120" rx="520" ry="80" fill="url(#fl-cloud)"/>
-          <ellipse cx="2760" cy="420" rx="460" ry="100" fill="url(#fl-cloud)"/>
-          <ellipse cx="600" cy="-60" rx="480" ry="70" fill="url(#fl-cloud)"/>
-        </g>
-        <path d="M 2110 402 L 2330 452 Q 2372 466 2346 474 L 2240 470 L 2096 428 Z" fill="url(#fl-wing)" stroke="#bcc3cd" stroke-width="1.5"/>
-        <path d="M 1950 300 L 2130 58 Q 2146 40 2172 40 L 2292 40 Q 2312 40 2308 62 L 2296 318 Z" fill="url(#fl-skin)" stroke="#d6dbe3" stroke-width="1.5"/>
-        <g class="fl-globe" transform="translate(2216 176)">
-          <circle r="64" fill="#0D469A"/>
-          <g fill="none" stroke="#F0EAEF" stroke-width="4.5">
-            <line x1="0" y1="-64" x2="0" y2="64"/>
-            <ellipse rx="27" ry="64"/><ellipse rx="50" ry="64"/>
-            <path d="M -64 -38 Q 0 -54 64 -38"/><path d="M -60 -22 Q 0 -34 60 -22"/>
-            <path d="M -60 22 Q 0 34 60 22"/><path d="M -64 38 Q 0 54 64 38"/>
+          <g id="fl-w"><rect x="-2.5" y="-2.5" width="25" height="33" rx="11" fill="#e3e8ee" stroke="#c9d0d9" stroke-width="1"/><rect width="20" height="28" rx="9" fill="url(#fl-glass)"/><path d="M 4 5 Q 9 2 15 4" stroke="#9fb1d1" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/></g>
+          <g id="fl-wu"><rect x="-2" y="-2" width="21" height="28" rx="9" fill="#e3e8ee" stroke="#c9d0d9" stroke-width="1"/><rect width="17" height="24" rx="8" fill="url(#fl-glass)"/><path d="M 3.5 4.5 Q 8 2 13 3.5" stroke="#9fb1d1" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".7"/></g>
+          <g id="fl-eng">
+            <path d="M 1012 548 L 1048 516 L 1150 520 L 1140 552 Z" fill="#cdd3db"/>
+            <path d="M 958 558 C 958 546 972 540 994 540 L 1142 545 C 1172 547 1190 560 1198 577 C 1190 594 1172 606 1142 608 L 994 613 C 972 613 958 607 958 595 Z" fill="url(#fl-nac)"/>
+            <path d="M 1000 548 L 1140 552" stroke="#ffffff" stroke-width="3" opacity=".8" stroke-linecap="round"/>
+            <path d="M 1198 577 L 1236 573 L 1236 583 Z" fill="#8a7b67"/>
+            <path d="M 1150 556 C 1170 560 1184 568 1190 577 C 1184 586 1170 594 1150 598" fill="none" stroke="#a6aebb" stroke-width="2"/>
+            <ellipse cx="964" cy="576" rx="13" ry="35" fill="url(#fl-intake)"/>
+            <ellipse cx="964" cy="576" rx="13" ry="35" fill="none" stroke="#f1f3f6" stroke-width="5"/>
           </g>
-          <rect x="-64" y="-11" width="128" height="22" fill="#0D469A"/>
-          <text x="0" y="7" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="600" font-size="18" fill="#F0EAEF">CAN COLLS</text>
+          <path id="fl-cloudshape" d="M 0 60 C -10 40 10 22 34 28 C 40 6 70 -6 96 6 C 112 -14 152 -12 166 12 C 192 2 222 16 222 42 C 246 44 256 58 250 70 L 6 70 C -2 70 -4 64 0 60 Z"/>
+        </defs>
+
+        <circle cx="2600" cy="-260" r="900" fill="url(#fl-sun)"/>
+        <g class="fl-clouds-back">
+          <g transform="translate(-620 150) scale(2.2)" opacity="0.9"><use href="#fl-cloudshape" fill="#cfdcec" transform="translate(0 10)"/><use href="#fl-cloudshape" fill="#ffffff"/></g>
+          <g transform="translate(1500 30) scale(2.6)" opacity="0.85"><use href="#fl-cloudshape" fill="#cfdcec" transform="translate(0 10)"/><use href="#fl-cloudshape" fill="#ffffff"/></g>
+          <g transform="translate(2560 330) scale(2.4)" opacity="0.9"><use href="#fl-cloudshape" fill="#cfdcec" transform="translate(0 10)"/><use href="#fl-cloudshape" fill="#ffffff"/></g>
+          <g transform="translate(300 -170) scale(2)" opacity="0.8"><use href="#fl-cloudshape" fill="#cfdcec" transform="translate(0 10)"/><use href="#fl-cloudshape" fill="#ffffff"/></g>
+          <g transform="translate(-900 620) scale(2.8)" opacity="0.9"><use href="#fl-cloudshape" fill="#cfdcec" transform="translate(0 10)"/><use href="#fl-cloudshape" fill="#ffffff"/></g>
         </g>
-        <path d="M 70 440 C 70 372 128 316 236 304 C 300 262 410 232 560 228 L 870 228 C 960 230 1012 278 1066 300 L 2070 300 C 2170 300 2250 306 2330 318 L 2342 352 C 2290 410 2190 474 2040 522 L 300 522 C 160 522 70 500 70 440 Z" fill="url(#fl-skin)"/>
+
+        <!-- estabilitzador i motors del costat llunyà -->
+        <path d="M 2150 312 L 2328 292 Q 2350 290 2348 300 L 2210 322 Z" fill="#d9dee5"/>
+        <g opacity=".55" transform="translate(-34 -30)"><use href="#fl-eng"/><use href="#fl-eng" transform="translate(292 70)"/></g>
+
+        <!-- deriva amb el globus -->
+        <path d="M 1940 302 C 1990 250 2080 120 2140 52 C 2152 40 2170 36 2190 36 L 2296 36 C 2310 36 2318 46 2314 60 L 2300 318 Z" fill="url(#fl-fin)" stroke="#d3d9e1" stroke-width="1.4"/>
+        <path d="M 2244 38 L 2276 314" stroke="#dbe0e7" stroke-width="2"/>
+        <g transform="translate(2208 168)">
+          <circle r="62" fill="#0D469A"/>
+          <g fill="none" stroke="#F0EAEF" stroke-width="4.2">
+            <line x1="0" y1="-62" x2="0" y2="62"/>
+            <ellipse rx="26" ry="62"/><ellipse rx="48" ry="62"/>
+            <path d="M -62 -36 Q 0 -52 62 -36"/><path d="M -59 -21 Q 0 -32 59 -21"/>
+            <path d="M -59 21 Q 0 32 59 21"/><path d="M -62 36 Q 0 52 62 36"/>
+          </g>
+          <rect x="-62" y="-11" width="124" height="22" fill="#0D469A"/>
+          <text x="0" y="7" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="600" font-size="17.5" letter-spacing=".5" fill="#F0EAEF">CAN COLLS</text>
+        </g>
+
+        <!-- fusellatge -->
+        <path d="M 52 452 C 52 410 78 370 128 340 C 168 316 214 300 262 292 C 330 262 430 236 560 230 L 860 230 C 930 232 985 262 1040 292 C 1060 300 1080 300 1110 300 L 2060 300 C 2160 300 2250 304 2338 314 L 2352 330 C 2318 372 2240 430 2120 488 C 2070 510 2030 520 1980 522 L 330 522 C 190 522 90 506 60 478 C 54 470 52 462 52 452 Z" fill="url(#fl-skin)"/>
         <g clip-path="url(#fl-clip)">
-          <line x1="700" y1="300" x2="700" y2="522" stroke="#e1e5eb" stroke-width="1"/><line x1="1000" y1="300" x2="1000" y2="522" stroke="#e1e5eb" stroke-width="1"/><line x1="1500" y1="300" x2="1500" y2="522" stroke="#e1e5eb" stroke-width="1"/><line x1="1650" y1="300" x2="1650" y2="522" stroke="#e1e5eb" stroke-width="1"/><line x1="2000" y1="300" x2="2000" y2="522" stroke="#e1e5eb" stroke-width="1"/>
-          <rect x="0" y="420" width="2400" height="24" fill="#0D469A"/>
-          <rect x="0" y="448" width="2400" height="6" fill="#052367"/>
-          <rect x="0" y="470" width="2400" height="60" fill="#c9cfd8" opacity=".35"/>
+          <rect x="0" y="468" width="2400" height="60" fill="url(#fl-belly)"/>
+          <line x1="620" y1="226" x2="620" y2="524" stroke="#e3e7ec" stroke-width="1.2"/><line x1="980" y1="226" x2="980" y2="524" stroke="#e3e7ec" stroke-width="1.2"/><line x1="1370" y1="226" x2="1370" y2="524" stroke="#e3e7ec" stroke-width="1.2"/><line x1="1660" y1="226" x2="1660" y2="524" stroke="#e3e7ec" stroke-width="1.2"/><line x1="1960" y1="226" x2="1960" y2="524" stroke="#e3e7ec" stroke-width="1.2"/>
+          <path d="M 30 498 C 120 446 200 422 310 418 L 2400 418 L 2400 441 L 310 441 C 214 444 140 462 72 512 Z" fill="#0D469A"/>
+          <path d="M 64 520 C 140 470 220 450 310 447 L 2400 447 L 2400 453 L 310 453 C 226 456 156 476 86 528 Z" fill="#052367"/>
+          <ellipse cx="1110" cy="506" rx="300" ry="26" fill="url(#fl-ao)"/>
+          <path d="M 860 516 C 1000 512 1300 512 1520 518" stroke="#c1c8d2" stroke-width="1.4" fill="none"/>
         </g>
-        <rect x="396" y="330" width="48" height="140" rx="9" fill="none" stroke="#c4cad4" stroke-width="1.4"/><rect x="1450" y="330" width="46" height="140" rx="9" fill="none" stroke="#c4cad4" stroke-width="1.4"/><rect x="1786" y="330" width="48" height="140" rx="9" fill="none" stroke="#c4cad4" stroke-width="1.4"/>
-        <rect x="320" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="366" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="458" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="504" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="550" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="596" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="642" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="688" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="734" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="780" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="826" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="872" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="918" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="964" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1010" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1056" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1102" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1148" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1286" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1332" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1378" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1516" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1562" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1608" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1654" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1700" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1746" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1884" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1930" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/><rect x="1976" y="378" width="22" height="30" rx="10" fill="url(#fl-glass)"/>
-        <rect x="372" y="262" width="18" height="24" rx="8" fill="url(#fl-glass)"/><rect x="412" y="262" width="18" height="24" rx="8" fill="url(#fl-glass)"/><rect x="452" y="262" width="18" height="24" rx="8" fill="url(#fl-glass)"/><rect x="492" y="262" width="18" height="24" rx="8" fill="url(#fl-glass)"/><rect x="532" y="262" width="18" height="24" rx="8" fill="url(#fl-glass)"/>
-        <path d="M 150 320 L 236 305 L 240 320 L 156 334 Z" fill="url(#fl-glass)"/>
+        <path d="M 52 452 C 52 410 78 370 128 340" stroke="#ffffff" stroke-width="3" fill="none" opacity=".7"/>
+        <path d="M 2338 314 L 2352 330" stroke="#c9d0d9" stroke-width="2"/>
+        <ellipse cx="2346" cy="324" rx="4" ry="7" fill="#3a4152"/>
+        <!-- cabina -->
+        <path d="M 156 322 L 188 310 L 194 322 L 162 333 Z M 198 307 L 232 299 L 236 312 L 203 319 Z M 240 297 L 262 293 L 264 306 L 244 310 Z" fill="url(#fl-glass)"/>
+        <g><rect x="396" y="334" width="44" height="136" rx="10" fill="none" stroke="#c3cad4" stroke-width="1.6"/><rect x="408" y="352" width="20" height="22" rx="8" fill="url(#fl-glass)"/></g><g><rect x="1450" y="334" width="44" height="136" rx="10" fill="none" stroke="#c3cad4" stroke-width="1.6"/><rect x="1462" y="352" width="20" height="22" rx="8" fill="url(#fl-glass)"/></g><g><rect x="1786" y="334" width="44" height="136" rx="10" fill="none" stroke="#c3cad4" stroke-width="1.6"/><rect x="1798" y="352" width="20" height="22" rx="8" fill="url(#fl-glass)"/></g>
+        <use href="#fl-w" x="320" y="379"/><use href="#fl-w" x="366" y="379"/><use href="#fl-w" x="458" y="379"/><use href="#fl-w" x="504" y="379"/><use href="#fl-w" x="550" y="379"/><use href="#fl-w" x="596" y="379"/><use href="#fl-w" x="642" y="379"/><use href="#fl-w" x="688" y="379"/><use href="#fl-w" x="734" y="379"/><use href="#fl-w" x="780" y="379"/><use href="#fl-w" x="826" y="379"/><use href="#fl-w" x="872" y="379"/><use href="#fl-w" x="918" y="379"/><use href="#fl-w" x="964" y="379"/><use href="#fl-w" x="1010" y="379"/><use href="#fl-w" x="1056" y="379"/><use href="#fl-w" x="1286" y="379"/><use href="#fl-w" x="1332" y="379"/><use href="#fl-w" x="1378" y="379"/><use href="#fl-w" x="1516" y="379"/><use href="#fl-w" x="1562" y="379"/><use href="#fl-w" x="1608" y="379"/><use href="#fl-w" x="1654" y="379"/><use href="#fl-w" x="1700" y="379"/><use href="#fl-w" x="1746" y="379"/><use href="#fl-w" x="1838" y="379"/><use href="#fl-w" x="1884" y="379"/><use href="#fl-w" x="1930" y="379"/><use href="#fl-w" x="1976" y="379"/>
+        <use href="#fl-wu" x="400" y="258"/><use href="#fl-wu" x="440" y="258"/><use href="#fl-wu" x="480" y="258"/><use href="#fl-wu" x="520" y="258"/><use href="#fl-wu" x="560" y="258"/>
+
+        <!-- finestra amb en Pere -->
         <g class="fl-portrait">
-          <rect x="1232" y="368" width="38" height="50" rx="17" fill="#e8ebf0" stroke="#c9cfd8" stroke-width="1.2"/>
-          <rect x="1236" y="372" width="30" height="42" rx="14" fill="#cdd3dc"/>
+          <rect x="1232" y="369" width="38" height="49" rx="17" fill="#e6eaf0" stroke="#c6cdd7" stroke-width="1.2"/>
+          <rect x="1236" y="373" width="30" height="41" rx="14" fill="#d2d8e1"/>
           <image href="assets/pere-finestra.jpg" x="1240" y="376" width="22" height="30" preserveAspectRatio="xMidYMin slice" clip-path="url(#fl-win)"/>
           <rect x="1240" y="378" width="22" height="30" rx="10" fill="url(#fl-shine)"/>
-          <rect x="1240" y="378" width="22" height="30" rx="10" fill="none" stroke="#9aa3b0" stroke-width=".6"/>
+          <rect x="1240" y="378" width="22" height="30" rx="10" fill="none" stroke="#98a2b1" stroke-width=".6"/>
         </g>
-        <path d="M 900 498 L 1330 506 L 1760 676 Q 1778 690 1752 694 L 1680 694 L 1140 540 Z" fill="url(#fl-wing)" stroke="#b5bcc7" stroke-width="1.5"/>
-        <path d="M 1140 540 L 1680 694" stroke="#f4f6f9" stroke-width="3" opacity=".8"/>
-        <rect x="1085" y="530" width="40" height="22" fill="#c3c9d2"/>
-        <rect x="1010" y="546" width="200" height="56" rx="28" fill="url(#fl-metal)"/>
-        <ellipse cx="1016" cy="574" rx="10" ry="25" fill="#1e2433"/>
-        <rect x="1360" y="596" width="40" height="22" fill="#c3c9d2"/>
-        <rect x="1300" y="612" width="180" height="52" rx="26" fill="url(#fl-metal)"/>
-        <ellipse cx="1306" cy="638" rx="9" ry="23" fill="#1e2433"/>
+
+        <!-- estabilitzador proper -->
+        <path d="M 2090 420 C 2160 432 2260 452 2360 482 C 2376 488 2372 498 2352 498 L 2250 494 C 2190 470 2130 452 2080 440 Z" fill="url(#fl-wingg)" stroke="#bec5cf" stroke-width="1.2"/>
+
+        <!-- ala propera amb flaps -->
+        <path d="M 880 496 C 1000 498 1200 500 1360 506 L 1780 682 C 1796 690 1790 702 1770 702 L 1700 702 C 1690 702 1676 698 1666 692 L 1120 540 C 1040 524 960 512 880 506 Z" fill="url(#fl-wingg)" stroke="#b7bfca" stroke-width="1.4"/>
+        <path d="M 1360 506 L 1780 682" stroke="#ffffff" stroke-width="3.5" opacity=".9"/>
+        <path d="M 1190 532 L 1700 684" stroke="#b3bbc6" stroke-width="1.6"/>
+        <path d="M 1420 588 L 1450 610 M 1560 628 L 1588 650" stroke="#b3bbc6" stroke-width="1.6"/>
+        <g fill="#c9cfd8" stroke="#aeb6c2" stroke-width="1"><path d="M 1250 548 C 1290 556 1320 566 1330 576 C 1300 576 1270 566 1250 548 Z"/><path d="M 1500 620 C 1540 628 1566 638 1574 648 C 1546 648 1518 638 1500 620 Z"/></g>
+        <use href="#fl-eng"/>
+        <use href="#fl-eng" transform="translate(292 70) scale(.94) translate(64 36)"/>
+
         <g class="fl-clouds-front">
-          <ellipse cx="300" cy="760" rx="520" ry="90" fill="url(#fl-cloud)"/>
-          <ellipse cx="2150" cy="790" rx="560" ry="80" fill="url(#fl-cloud)"/>
+          <g transform="translate(-300 700) scale(2.6)" opacity="1"><use href="#fl-cloudshape" fill="#cfdcec" transform="translate(0 10)"/><use href="#fl-cloudshape" fill="#ffffff"/></g>
+          <g transform="translate(1900 760) scale(3)" opacity="1"><use href="#fl-cloudshape" fill="#cfdcec" transform="translate(0 10)"/><use href="#fl-cloudshape" fill="#ffffff"/></g>
+          <g transform="translate(2900 600) scale(2.2)" opacity="0.9"><use href="#fl-cloudshape" fill="#cfdcec" transform="translate(0 10)"/><use href="#fl-cloudshape" fill="#ffffff"/></g>
         </g>
       </svg>
         <img class="fl-photo" id="fl-photo" src="assets/avio-postal.jpg" alt="L'avió de Can Colls sobrevolant la costa" width="1573" height="1000">
