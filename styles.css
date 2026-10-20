@@ -691,3 +691,64 @@ html{overflow-x:clip}
 .collage--pool .stamp{top:auto;bottom:2%;right:-1%}
 html.lenis{scroll-behavior:auto!important}
 html,body{overflow-anchor:none}
+
+/* ================= v9 · El vol: finestra -> avió -> postal ================= */
+.flight{position:relative;height:480vh}
+.fl-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--bg)}
+.fl-sky{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,#e4eaf3 0%,#c9d8ec 50%,#a7c0e2 100%)}
+.fl-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fl-photo{position:absolute;left:0;top:0;width:0;height:0;max-width:none;object-fit:cover;opacity:0}
+.fl-card{position:absolute;z-index:1;opacity:0;background-color:#fffdfa;background-image:var(--grain);box-shadow:var(--obj-dark);border-radius:4px;transform-origin:50% 50%}
+.fl-caption{position:absolute;left:18px;right:18px;bottom:15px;font-family:var(--display);font-size:clamp(13px,1.15vw,17px);letter-spacing:.04em;color:#052367}
+.fl-mark{position:absolute;z-index:4;opacity:0;pointer-events:none}
+.fl-mark .stamp{position:relative;right:auto;bottom:auto;top:auto;width:88px;height:88px;padding:9px;rotate:7deg;outline-offset:-5px}
+.fl-postmark{position:absolute;left:-150px;top:46px;width:200px;opacity:.7;rotate:-9deg}
+
+.fl-hero{position:absolute;inset:0;z-index:5;display:grid;align-items:center;padding-top:96px;pointer-events:none}
+.fl-hero .wrap{width:100%}
+.fl-livery{display:inline-block;transform-origin:0 0;pointer-events:none}
+.fl-livery .eyebrow{color:#052367;opacity:.78;margin-bottom:14px}
+.fl-livery h1{font-family:var(--display);font-weight:400;letter-spacing:0;font-size:clamp(60px,9.4vw,150px);line-height:.88;color:#0D469A;margin:0}
+.fl-livery h1 span{display:block}
+.fl-livery h1 .l2{padding-left:.3em}
+.fl-fade{max-width:min(520px,46%);pointer-events:auto}
+.fl-hero .lead{color:#052367;margin-top:26px;max-width:30ch}
+.fl-hero .motto{color:#0D469A;margin-top:18px}
+.fl-hero .pills{margin-top:24px}
+.fl-hero .pill--fill{background:#0D469A;color:#F0EAEF}
+.fl-hero .pill--line{color:#0D469A;border-color:#0D469A}
+.fl-hero .pill--line:hover{background:#0D469A;color:#F0EAEF}
+.fl-hint{position:absolute;left:0;right:0;bottom:26px;display:flex;justify-content:center;align-items:center;gap:10px;max-width:none;font-size:var(--t-cap);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#052367}
+.fl-hint i{font-style:normal;display:inline-block;animation:flHint 1.6s var(--ease) infinite}
+@keyframes flHint{50%{transform:translateY(6px)}}
+
+.fl-brand{position:absolute;inset:0;z-index:5;display:grid;align-items:center;padding-top:96px;padding-bottom:40px;opacity:0;pointer-events:none}
+.fl-brand-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:clamp(32px,5vw,80px);align-items:center;width:100%}
+.fl-text .manifest-text{font-size:clamp(20px,2.4vw,36px);line-height:1.14;max-width:none;margin-top:14px}
+.fl-text .values{margin-top:28px;max-width:none}
+.fl-slot{width:100%;aspect-ratio:1573/1000}
+
+/* Capçalera fosca mentre el fons és el fusellatge blanc */
+.on-light .brand-txt span{color:rgba(5,35,103,.72)}
+.on-light .brand-txt b{color:#0D469A}
+.on-light .lang-btn{color:#052367;border-color:rgba(5,35,103,.3)}
+.on-light .nav.topbar.is-solid{background:transparent}
+
+@media (max-width:760px){
+  .flight{height:420vh}
+  .fl-hero{align-items:start;padding-top:104px}
+  .fl-livery h1{font-size:clamp(48px,15vw,84px)}
+  .fl-fade{max-width:100%}
+  .fl-hero .lead{display:none}
+  .fl-brand{align-items:start;padding-top:96px}
+  .fl-brand-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+  .fl-text .manifest-text{font-size:clamp(17px,4.6vw,22px)}
+  .fl-text .values{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px;padding-top:12px}
+  .fl-text .values p{display:none}
+  .fl-text .values b{font-size:var(--t-sm)}
+  .fl-slot{width:88%;justify-self:center}
+  .fl-mark .stamp{width:64px;height:64px;padding:7px}
+  .fl-postmark{width:150px;left:-112px;top:34px}
+}
+main#contingut-principal:has(> .flight){padding-top:0}
+.fl-hint{color:#F0EAEF;text-shadow:0 1px 2px rgba(5,35,103,.4)}
