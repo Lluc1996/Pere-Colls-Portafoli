@@ -771,3 +771,7 @@ main#contingut-principal:has(> .flight){padding-top:0}
   .fl-sky.fl-sky-sea{background:linear-gradient(180deg,#2a6dce 0%,#3f86dc 40%,#2f78cf 56%,#164f9c 70%,#0c3f84 100%)}
   .fl-hero .motto{display:none}
 }
+/* v11 · transició amb núvol, sense la foto del mig */
+.fl-cloud{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transform-origin:50% 50%}
+.fl-haze{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(90% 80% at 50% 50%,#ffffff 0%,#f4f8fc 55%,#e3edf8 100%)}
+@media (max-width:760px){#fl-l1{--f:90px}}
