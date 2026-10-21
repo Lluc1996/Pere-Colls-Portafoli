@@ -21,7 +21,7 @@
     if (!nav) return;
     var y = window.scrollY;
     nav.classList.toggle('is-solid', y > 40);
-    if (!reduce) nav.classList.toggle('is-hidden', y > lastY && y > 400);
+    nav.classList.remove('is-hidden');
     lastY = y;
   }
 

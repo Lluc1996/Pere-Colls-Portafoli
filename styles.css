@@ -791,3 +791,5 @@ main#contingut-principal:has(> .flight){padding-top:0}
 .menu-toggle[aria-expanded="true"]::after{top:calc(50% - 1px);transform:rotate(-45deg)}
 .menu{position:absolute;top:calc(100% + 10px);right:0;order:0;flex-basis:auto;opacity:0;visibility:hidden;transform:translateY(-8px) scale(.98);transform-origin:top right;transition:opacity .3s var(--ease-out),transform .45s var(--ease),visibility 0s .3s}
 .nav.menu-open .menu{opacity:1;visibility:visible;transform:none;transition:opacity .3s var(--ease-out),transform .45s var(--ease),visibility 0s}
+/* La capçalera i el botó Menú sempre visibles */
+.nav.topbar.is-hidden{transform:none}
