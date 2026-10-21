@@ -200,8 +200,8 @@
     /* Mòbil: el botó Menú obre la llista vertical */
     var toggle = document.getElementById('menu-toggle');
     if (toggle && nav){
-      function setOpen(v){ nav.classList.toggle('menu-open', v); toggle.setAttribute('aria-expanded', v ? 'true' : 'false'); if (v) lightUp(current); }
-      toggle.addEventListener('click', function(e){ e.stopPropagation(); setOpen(!nav.classList.contains('menu-open')); });
+      function setOpen(v){ nav.classList.toggle('menu-open', v); toggle.setAttribute('aria-expanded', v ? 'true' : 'false'); if (v){ lightUp(current); } else { menu.classList.remove('is-open'); } }
+      toggle.addEventListener('click', function(e){ e.stopPropagation(); var v = !nav.classList.contains('menu-open'); setOpen(v); if (v && e.detail === 0 && items[0]) setTimeout(function(){ items[0].focus(); }, 60); });
       document.addEventListener('click', function(e){ if (nav.classList.contains('menu-open') && !menu.contains(e.target)) setOpen(false); });
       document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
       each(items, function(a){ a.addEventListener('click', function(){ setOpen(false); }); });

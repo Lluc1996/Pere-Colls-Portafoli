@@ -779,3 +779,15 @@ main#contingut-principal:has(> .flight){padding-top:0}
 @keyframes flFogB{to{background-position:240vh 40%;background-position:240svh 40%}}
 .fl-veil{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(120% 90% at 55% 50%,rgba(250,252,255,.95) 0%,rgba(240,246,255,.75) 45%,rgba(220,234,250,.35) 100%)}
 @media (prefers-reduced-motion:reduce){.fl-fog{animation:none!important}}
+
+/* Menú darrere d'un botó, a totes les mides */
+.nav.topbar .nav-end{position:relative}
+.menu-toggle{display:inline-flex;align-items:center;gap:10px;min-height:38px;padding:8px 40px 8px 16px;position:relative;border-radius:var(--r-pill);border:1px solid rgba(240,234,239,.25);background:rgba(13,70,154,.78);color:#F0EAEF;font:600 var(--t-sm)/1 var(--font);letter-spacing:.02em;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:background-color .3s var(--ease-out),transform .4s var(--ease)}
+.menu-toggle:hover{background:rgba(13,70,154,.95);transform:translateY(-1px)}
+.menu-toggle::before,.menu-toggle::after{content:"";position:absolute;right:16px;width:14px;height:1.8px;border-radius:2px;background:currentColor;transition:transform .45s var(--ease),top .45s var(--ease)}
+.menu-toggle::before{top:calc(50% - 4px)}
+.menu-toggle::after{top:calc(50% + 2.5px)}
+.menu-toggle[aria-expanded="true"]::before{top:calc(50% - 1px);transform:rotate(45deg)}
+.menu-toggle[aria-expanded="true"]::after{top:calc(50% - 1px);transform:rotate(-45deg)}
+.menu{position:absolute;top:calc(100% + 10px);right:0;order:0;flex-basis:auto;opacity:0;visibility:hidden;transform:translateY(-8px) scale(.98);transform-origin:top right;transition:opacity .3s var(--ease-out),transform .45s var(--ease),visibility 0s .3s}
+.nav.menu-open .menu{opacity:1;visibility:visible;transform:none;transition:opacity .3s var(--ease-out),transform .45s var(--ease),visibility 0s}
