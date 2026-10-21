@@ -1,65 +1,79 @@
-/* Can Colls Disseny · el vol de la portada
-   1. Primer pla del fusellatge: la finestra amb en Pere, la línia blava i el títol com a rètol.
-   2. Amb l'scroll la càmera s'allunya: apareixen les finestres, la silueta i el títol s'enganxa al fusellatge.
-   3. El cel s'encongeix fins a ser una postal amb la foto de l'avió, al costat del text de "La marca". */
+/* Can Colls Disseny · el vol de la portada (fotos reals)
+   Tres fotos: la finestra de prop, la fila de finestres i l'avió sencer.
+   La càmera s'allunya fent petita cada foto al voltant de la finestra i fonent-la amb la següent;
+   al final la tercera foto s'encongeix fins a ser la postal al costat del text de "La marca". */
 (function(){
   var sec = document.getElementById('vol');
   if (!sec) return;
   var root = document.documentElement;
-  var stage = sec.querySelector('.fl-stage'), svg = document.getElementById('fl-svg');
-  var sky = document.getElementById('fl-sky'), photo = document.getElementById('fl-photo');
+  var stage = sec.querySelector('.fl-stage'), sky = document.getElementById('fl-sky');
   var card = document.getElementById('fl-card'), mark = document.getElementById('fl-mark');
   var slot = document.getElementById('fl-slot'), brand = document.getElementById('fl-brand');
-  var liv = document.getElementById('fl-livery'), fades = sec.querySelectorAll('.fl-fade');
+  var liv = document.getElementById('fl-livery'), liv3 = sec.querySelector('.fl-liv3');
+  var fades = sec.querySelectorAll('.fl-fade');
 
-  /* Punts clau en unitats de l'avió (viewBox 2400 x 800) */
-  var WIN = {x: 1251, y: 393, h: 30};          // finestra amb el retrat
-  var PLANE = {x: 1200, y: 420, len: 2320};    // centre i llargada de l'avió
-  var LIV = {x: 600, y: 240, h: 114};          // lloc del rètol al fusellatge
+  /* Cada foto: mida, centre de la finestra de referència i alçada d'aquesta finestra (px de la imatge) */
+  var L = [
+    {el: document.getElementById('fl-l1'), w: 1667, h: 943, ax: 1181, ay: 484, s: 396},
+    {el: document.getElementById('fl-l2'), w: 1671, h: 941, ax: 1157, ay: 482, s: 101},
+    {el: document.getElementById('fl-l3'), w: 1670, h: 942, ax: 908,  ay: 512, s: 10}
+  ];
+  var KEY = [0, .34, .62];          // moment en què cada foto es veu exactament sencera
 
-  var W = 0, H = 0, mobile = false, nat = null, slotR = null;
+  var W = 0, H = 0, mobile = false, slotR = null;
   function clamp(v, a, b){ return Math.min(b, Math.max(a, v)); }
   function seg(p, a, b){ return clamp((p - a) / (b - a), 0, 1); }
   function lerp(a, b, t){ return a + (b - a) * t; }
   function ease(t){ return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function smooth(t){ return t * t * (3 - 2 * t); }
+
+  function cover(l, i){
+    var c = Math.max(W / l.w, H / l.h);
+    var ox = (W - l.w * c) / 2, oy = (H - l.h * c) / 2;
+    if (mobile){
+      if (i === 0){
+        /* Pantalla vertical: la finestra més petita i a sota del text, amb cel a dalt */
+        c = Math.min(.31 * H, .7 * W) / l.s;
+        ox = clamp(W * .62 - l.ax * c, W - l.w * c, 0); oy = H - l.h * c;
+      } else if (i === 1){
+        ox = clamp(W * .6 - l.ax * c, W - l.w * c, 0);
+      } else {
+        /* L'avió sencer, amb el cel que continua per dalt i per baix */
+        c = W * 1.06 / 1400;
+        ox = W / 2 - 868 * c; oy = H * .56 - l.ay * c;
+      }
+    }
+    return {c: c, ox: ox, oy: oy};
+  }
 
   function measure(){
     var sr = stage.getBoundingClientRect();
     W = sr.width; H = sr.height; mobile = W < 761;
-    liv.style.transform = 'none';
-    var r = liv.getBoundingClientRect();
-    nat = {x: r.left - sr.left, y: r.top - sr.top, w: r.width, h: r.height};
     var bt = brand.style.transform; brand.style.transform = 'none';
     var q = slot.getBoundingClientRect();
     slotR = {x: q.left - sr.left, y: q.top - sr.top, w: q.width, h: q.height};
     brand.style.transform = bt;
-    photo.style.left = slotR.x + 'px'; photo.style.top = slotR.y + 'px';
-    photo.style.width = slotR.w + 'px'; photo.style.height = slotR.h + 'px';
+    L.forEach(function(l, i){
+      var cv = cover(l, i); l.cv = cv;
+      l.H = l.s * cv.c;                                  // alçada de la finestra a la pantalla quan la foto és sencera
+      l.P = {x: cv.ox + l.ax * cv.c, y: cv.oy + l.ay * cv.c};
+    });
     card.style.left = (slotR.x - 14) + 'px'; card.style.top = (slotR.y - 14) + 'px';
     card.style.width = (slotR.w + 28) + 'px'; card.style.height = (slotR.h + 64) + 'px';
     mark.style.left = (slotR.x + slotR.w - (mobile ? 70 : 96)) + 'px'; mark.style.top = (slotR.y - (mobile ? 28 : 36)) + 'px';
   }
 
+  /* Càmera: alçada aparent de la finestra (Hw) i punt de la pantalla on cau (P) */
   function camera(p){
-    var s0 = (mobile ? .32 : .44) * H / WIN.h;
-    var a0 = {x: (mobile ? .5 : .72) * W, y: (mobile ? .66 : .42) * H};
-    var s1 = Math.min((mobile ? .9 : .74) * W / PLANE.len, .62 * H / 800);
-    var a1 = {x: .5 * W, y: .52 * H};
-    var s2 = .74 * slotR.w / PLANE.len;
-    var a2 = {x: slotR.x + slotR.w * .52, y: slotR.y + slotR.h * .5};
-    var s, f, a;
-    if (p <= .62){
-      var t = ease(seg(p, 0, .62));
-      s = Math.exp(lerp(Math.log(s0), Math.log(s1), t));
-      var w = (1 / s - 1 / s0) / (1 / s1 - 1 / s0);   // moviment uniforme a la pantalla
-      f = {x: lerp(WIN.x, PLANE.x, w), y: lerp(WIN.y, PLANE.y, w)};
-      a = {x: lerp(a0.x, a1.x, w), y: lerp(a0.y, a1.y, w)};
-    } else {
-      var u = ease(seg(p, .62, .82));
-      s = Math.exp(lerp(Math.log(s1), Math.log(s2), u));
-      f = PLANE; a = {x: lerp(a1.x, a2.x, u), y: lerp(a1.y, a2.y, u)};
-    }
-    return {s: s, vx: f.x - a.x / s, vy: f.y - a.y / s};
+    var i = p < KEY[1] ? 0 : 1;
+    var a = L[i], b = L[i + 1];
+    var t = ease(seg(p, KEY[i], KEY[i + 1]));
+    var Hw = Math.exp(lerp(Math.log(a.H), Math.log(b.H), t));
+    var w = (1 / Hw - 1 / a.H) / (1 / b.H - 1 / a.H);
+    return {Hw: Hw, P: {x: lerp(a.P.x, b.P.x, w), y: lerp(a.P.y, b.P.y, w)}};
+  }
+  function place(l, sc, tx, ty){
+    l.el.style.transform = 'translate(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px) scale(' + sc.toFixed(5) + ')';
   }
 
   var lastP = -1;
@@ -69,36 +83,64 @@
     var p = total > 0 ? clamp(-r.top / total, 0, 1) : 0;
     if (!force && Math.abs(p - lastP) < 1e-4) return;
     lastP = p;
-    var c = camera(p);
-    svg.setAttribute('viewBox', c.vx.toFixed(3) + ' ' + c.vy.toFixed(3) + ' ' + (W / c.s).toFixed(3) + ' ' + (H / c.s).toFixed(3));
 
-    /* El rètol: del títol gran al fusellatge */
-    var b = ease(seg(p, .3, .5));
-    var tx = (LIV.x - c.vx) * c.s, ty = (LIV.y - c.vy) * c.s, k = (LIV.h * c.s) / nat.h;
-    var sc = Math.exp(lerp(0, Math.log(k), b));
-    liv.style.transform = 'translate(' + lerp(0, tx - nat.x, b).toFixed(2) + 'px,' + lerp(0, ty - nat.y, b).toFixed(2) + 'px) scale(' + sc.toFixed(5) + ')';
+    if (p <= KEY[2]){
+      var cam = camera(p);
+      L.forEach(function(l){
+        var sc = cam.Hw / l.s;
+        place(l, sc, cam.P.x - l.ax * sc, cam.P.y - l.ay * sc);
+      });
+    } else {
+      /* La tercera foto es fa postal */
+      /* La foto sempre omple el requadre que s'encongeix */
+      var l3 = L[2], u = ease(seg(p, KEY[2], .82));
+      if (!mobile){
+        var rx = lerp(0, slotR.x, u), ry = lerp(0, slotR.y, u), rw = lerp(W, slotR.w, u), rh = lerp(H, slotR.h, u);
+        var cs = Math.max(rw / l3.w, rh / l3.h);
+        place(l3, cs, rx + (rw - l3.w * cs) / 2, ry + (rh - l3.h * cs) / 2);
+      } else {
+        var cs2 = Math.max(slotR.w / l3.w, slotR.h / l3.h);
+        var sx = slotR.x + (slotR.w - l3.w * cs2) / 2, sy = slotR.y + (slotR.h - l3.h * cs2) / 2;
+        place(l3, Math.exp(lerp(Math.log(l3.cv.c), Math.log(cs2), u)), lerp(l3.cv.ox, sx, u), lerp(l3.cv.oy, sy, u));
+      }
+    }
+    /* Fosa entre fotos (la de sobre s'esvaeix quan la de sota ja és prou nítida) */
+    L[0].el.style.opacity = (1 - smooth(seg(p, .14, .3))).toFixed(3);
+    L[1].el.style.opacity = (1 - smooth(seg(p, .46, .58))).toFixed(3);
+    /* Vores difuminades que creixen quan la foto s'allunya, perquè es fongui amb la de sota */
+    L[0].el.style.setProperty('--f', Math.max(mobile ? 90 : 0, 440 * smooth(seg(p, .015, .2))).toFixed(1) + 'px');
+    if (mobile){
+      L[1].el.style.opacity = (smooth(seg(p, .08, .2)) * (1 - smooth(seg(p, .46, .58)))).toFixed(3);
+      sky.classList.toggle('fl-sky-sea', p > .4);
+    }
+    L[1].el.style.setProperty('--f', (420 * smooth(seg(p, KEY[1] + .01, .5))).toFixed(1) + 'px');
+    L[0].el.style.visibility = p < .34 ? 'visible' : 'hidden';
+    L[1].el.style.visibility = p < .62 ? 'visible' : 'hidden';
+    L[2].el.style.visibility = p > .46 ? 'visible' : 'hidden';
+    L[2].el.classList.toggle('fl-feather', mobile && p < .7);
 
-    /* La resta del text inicial s'esvaeix */
+    /* Text inicial: el lead i els botons marxen primer; el títol es manté fins que apareix l'avió */
     var fo = 1 - seg(p, 0, .1);
     Array.prototype.forEach.call(fades, function(el){
       el.style.opacity = fo.toFixed(3); el.style.transform = 'translateY(' + (-36 * (1 - fo)).toFixed(1) + 'px)';
       el.style.pointerEvents = fo < .5 ? 'none' : '';
     });
-    root.classList.toggle('on-light', p < .3);
+    var to = 1 - smooth(seg(p, .44, .56));
+    liv.style.opacity = to.toFixed(3);
+    liv.style.transform = 'translateY(' + (-24 * (1 - to)).toFixed(1) + 'px) scale(' + (1 - .06 * (1 - to)).toFixed(4) + ')';
+    liv3.style.opacity = smooth(seg(p, .52, .62)).toFixed(3);
+    root.classList.toggle('on-light', p < .48);
 
-    /* El cel es fa postal; el vector es fon amb la foto */
-    var q = ease(seg(p, .62, .82));
+    /* El cel es retalla fins a la postal */
+    var q = ease(seg(p, KEY[2], .82));
     var iT = slotR.y * q, iR = (W - slotR.x - slotR.w) * q, iB = (H - slotR.y - slotR.h) * q, iL = slotR.x * q;
     sky.style.clipPath = 'inset(' + iT.toFixed(1) + 'px ' + iR.toFixed(1) + 'px ' + iB.toFixed(1) + 'px ' + iL.toFixed(1) + 'px round ' + (4 * q).toFixed(1) + 'px)';
-    var x = seg(p, .74, .84);
-    svg.style.opacity = (1 - x).toFixed(3); liv.style.opacity = (1 - x).toFixed(3);
-    photo.style.opacity = x.toFixed(3);
-    var cardO = seg(p, .76, .85);
+    var cardO = seg(p, .74, .84);
     card.style.opacity = cardO.toFixed(3); card.style.transform = 'scale(' + lerp(1.04, 1, cardO).toFixed(4) + ')';
-    mark.style.opacity = seg(p, .82, .9).toFixed(3);
+    mark.style.opacity = seg(p, .8, .88).toFixed(3);
 
     /* "La marca" entra al costat de la postal */
-    var bo = seg(p, .76, .87);
+    var bo = seg(p, .74, .86);
     brand.style.opacity = bo.toFixed(3);
     brand.style.transform = 'translateY(' + (28 * (1 - bo)).toFixed(1) + 'px)';
     brand.style.pointerEvents = bo > .5 ? '' : 'none';
